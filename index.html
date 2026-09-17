@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .gallery {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 180px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.08);
+    }
+    
+
+    .btn {
+      margin-top: 25px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      background: #ff6f91;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: #ff4f79;
+    }
+
+    .balloons {
+      position: fixed;
+      bottom: -100px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      pointer-events: none;
+    }
+
+    .balloon {
+      width: 50px;
+      height: 70px;
+      background: red;
+      border-radius: 50% 50% 50% 50%;
+      animation: float 6s infinite ease-in;
+    }
+
+    .balloon:nth-child(2) { background: #ffd166; animation-delay: 1s; }
+    .balloon:nth-child(3) { background: #06d6a0; animation-delay: 2s; }
+    .balloon:nth-child(4) { background: #4d96ff; animation-delay: 3s; }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>🎂 Happy Birthday 🎂</h1>
+      <h2> <span id="name"> MY Eveything </span> 💖</h2>
+      <p>
+        Happy Birthday to my favorite human 💫
+Life is better, louder, and way more fun with you in it.
+Thanks for being my forever best human💖🎂
+      </p>
+
+      <div class="gallery">
+        <!-- Replace these images with your real photos -->
+        <img src="images/.jpeg" alt="Memory 1">
+        <img src="images/image9.jpeg" alt="Memory 2">
+        <img src="images/image10.jpeg" alt="Memory 3">
+      </div>
+      <p style="font-size:0.9rem; margin-top:10px;">
+      <a href="surprise.html"><button class="btn">Click for a Surprise 🎁</button></a>
+    </div>
+  </div>
+
+  <div class="balloons">
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+  </div>
+
+  <script>
+    surprise.html
+
+    document.getElementById('name').innerText = "Your Name";
+  </script>
+</body>
+</html>
