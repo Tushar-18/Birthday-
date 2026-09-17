@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Surprise 🎂</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+      text-align: center;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .message {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 25px;
+      max-width: 600px;
+      line-height: 1.5;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      position: relative;
+      width: 360px;
+      height: 640px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+      background: #fff;
+      margin-bottom: 20px;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .slide.active { opacity: 1; }
+
+    .overlay {
+      position: absolute;
+      top: 15px;
+      width: 100%;
+      text-align: center;
+      font-size: 1.3rem;
+      background: rgba(255, 192, 203, 0.7);
+      color: #fff;
+      padding: 10px 0;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .btn {
+      background: rgba(255, 182, 193, 0.8);
+      color: #fff;
+      border: none;
+      padding: 12px 18px;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn:hover { background: rgba(255, 105, 180, 0.9); }
+    .btn:active { transform: scale(0.9); }
+
+    @media (max-width: 400px) {
+      .container { width: 90%; height: 55vh; }
+      .btn { padding: 10px 14px; font-size: 1rem; }
+    }
+
+    /* Heart animation */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      left: 50%;
+      bottom: 0;
+      animation: floatUp 4s linear infinite;
+      opacity: 0.8;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
+
+    @keyframes floatUp {
+      0% { transform: translateX(0) translateY(0) rotate(45deg); opacity: 0.8; }
+      50% { transform: translateX(-20px) translateY(-150px) rotate(45deg); opacity: 0.6; }
+      100% { transform: translateX(20px) translateY(-300px) rotate(45deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Happy Birthday! 🎉</h1>
+  <div class="message">
+    Happy Birthday, My Girl 🥹💗<br>
+    Swipe or click the buttons to see the photos! ✨
+  </div>
+
+  <div class="container">
+    <div class="overlay">👉 Swipe / Click to Change Photos</div>
+
+    <!-- SLIDES -->
+    <img src="images/image1.jpeg" class="slide active">
+    <img src="images/image2.jpeg" class="slide">
+    <img src="images/image3.jpeg" class="slide">
+    <img src="images/image4.jpeg" class="slide">
+    <img src="images/image5.jpeg" class="slide">
+    <img src="images/image6.jpeg" class="slide">
+    <img src="images/image7.jpeg" class="slide">
+
+    <!-- CONTROLS -->
+    <div class="controls">
+      <button class="btn" onclick="prevSlide()">◀</button>
+      <button class="btn" onclick="nextSlide()">▶</button>
+    </div>
+
+    <!-- Floating hearts -->
+    <div id="hearts"></div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    function showSlide(index) {
+      slides[current].classList.remove('active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+    }
+
+    function nextSlide() { showSlide(current + 1); }
+    function prevSlide() { showSlide(current - 1); }
+
+    // Mobile swipe
+    let startX = 0;
+    const container = document.querySelector('.container');
+    container.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    container.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) nextSlide();
+      if (endX - startX > 50) prevSlide();
+    });
+
+    // Generate hearts
+    const heartsContainer = document.getElementById('hearts');
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 90 + '%';
+      heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }
+    setInterval(createHeart, 500); // new heart every 0.5 sec
+  </script>
+
+</body>
+</html>
